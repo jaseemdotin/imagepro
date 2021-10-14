@@ -8,6 +8,7 @@ $(document).ready(function() {
 
     $("#forms").submit(function (event) {
         event.preventDefault(); 
+        
         var fileExtension = ['jpeg', 'jpg', 'png'];
         var formData = new FormData(this);
         formData.append('min', $('#min').val())
@@ -15,6 +16,7 @@ $(document).ready(function() {
         formData.append('limit', $('#limit').val())
         formData.append('max', $('#max').val())
         console.log(formData)
+        $('#img1').show();
 
         $.ajax({
             url : "/search2",
@@ -26,10 +28,13 @@ $(document).ready(function() {
                console.log(data)
                 displayResults(data)
                 $("#mdbtn").click()
+                $('#img1').hide();
+
             },
             error: function(error){
                 console.log(error) 
                 alert("Only formats are allowed : "+fileExtension.join(', '));  
+                $('#img1').hide();
             }
         });
         return false; //<---- move it here
@@ -61,7 +66,7 @@ var displayResults = function(data){
       var score = data[i].score;
       var og = data[i].ogimg;
       var imgelement = "<img src="+og+" class="+cls+">"
-      var element = "<div class=img-result><img class=img-thumbnail src="+image+"/>\
+      var element = "<div class=img-result><img class=img-thumbnail src=static/dataset/"+image+"/>\
                      <div class=img-info>"+"<span class=image-name>IMAGE: "+image.split('.')[0]+"</span>\
                      <span class=img-score>SCORE: "+score+"</span></div></div>"
       $("#results").append(element);

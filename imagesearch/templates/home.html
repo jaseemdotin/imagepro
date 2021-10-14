@@ -1,5 +1,6 @@
 {% extends "_base.html" %}<b></b>
 {% block content %}
+{% load static %}
 <div class="container-fluid">
     <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="mdbtn">
@@ -52,7 +53,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group p-2">
                                             <label for="" class="">Output limit</label>
-                                            <input type="number" name="" id="limit" class="form-control" min="00" required>
+                                            <input type="number" name="" id="limit" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -62,13 +63,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group p-2">
                                             <label for="" class="">Min score</label>
-                                            <input type="number" name="" id="min" class="form-control" min="00" required>
+                                            <input type="number" name="" id="min" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group p-2">
                                             <label for="" class="">Max Score</label>
-                                            <input type="number" name="" id="max" class="form-control" max="100" required>
+                                            <input type="number" name="" id="max" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -82,6 +83,11 @@
                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-sm-12 p-3" id="laad">
+                                <div class="d-flex justify-content-center">
+                                    <img src="{% static '200.gif' %}" id="img1" style="display:none;">
+                                  </div>
                             </div>
                         </form>
                     </div>
