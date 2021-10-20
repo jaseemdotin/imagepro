@@ -19,6 +19,9 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.homeView),
+    path('',views.homeView,name="home"),
     path('search2',views.resultView),
+    path('srch',views.searchView,name="search"),
+    path('csvadd',views.csvAddView,name="csvadd"),
+    path('imageadd',views.imageAddView,name="imageadd"),
 ]

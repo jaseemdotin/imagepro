@@ -1,17 +1,45 @@
 $(document).ready(function() {
-
     console.log("ready");
     $("#mdbtn").hide()
     //modalControl();
     //getAllImages();
 
+    $( "#lstart" ).click(function() {
+      $(this).fadeOut(500)
+      $("#maindiv").show(1000)
+    });
+    $( "#ldrr" ).click(function() {
+      var imgVal = $('#image').val(); 
+      var pathVal = $('#path').val(); 
+        if(!(imgVal=='' && pathVal=='')) 
+        {  
+          $("#img1").show();
+        } 
+      
+    });
 
-    $("#forms").submit(function (event) {
+    $( "#freset" ).click(function() {
+      $("#path").prop('disabled', false);
+      $('input[type=file]').prop('disabled', false);
+      $("#forms").trigger("reset");
+    });
+
+    $('input[type=file]').change(function () {
+      $("#path").prop('disabled', true);
+      $("#freset").prop('disabled', false);
+  });
+
+  $('#path').change(function () {
+    $('input[type=file]').prop('disabled', true);
+    $("#freset").prop('disabled', false);
+  });
+
+    $("#forms22").submit(function (event) {
         event.preventDefault(); 
         
         var fileExtension = ['jpeg', 'jpg', 'png'];
         var formData = new FormData(this);
-        formData.append('min', $('#min').val())
+        formData.append('path', $('#path').val())
         formData.append('image',  $('#image')[0].files[0])
         formData.append('limit', $('#limit').val())
         formData.append('max', $('#max').val())
@@ -66,7 +94,7 @@ var displayResults = function(data){
       var score = data[i].score;
       var og = data[i].ogimg;
       var imgelement = "<img src="+og+" class="+cls+">"
-      var element = "<div class=img-result><img class=img-thumbnail src=static/dataset/"+image+"/>\
+      var element = "<div class= img-result ><img class=img-thumbnail src=static/dataset/"+image+"/>\
                      <div class=img-info>"+"<span class=image-name>IMAGE: "+image.split('.')[0]+"</span>\
                      <span class=img-score>SCORE: "+score+"</span></div></div>"
       $("#results").append(element);

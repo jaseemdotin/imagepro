@@ -67,7 +67,7 @@ class Searcher:
 		#store our index path
 		self.indexPath = indexPath
 
-	def search(self, queryFeatures, limit=101):
+	def search(self, queryFeatures, limit=10):
 		#initialize dictionary of results
 		results = {}
 
@@ -77,7 +77,7 @@ class Searcher:
 			reader = csv.reader(f)
 
 			#loop over the rows in the index
-			for row in reader:
+			for i,row in enumerate(reader) :
 				#parse out the image ID and features, then compute the
 				#chi-squared dist. b/w the features in our index
 				#and our query features

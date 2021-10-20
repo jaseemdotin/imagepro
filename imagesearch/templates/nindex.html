@@ -1,0 +1,134 @@
+{% extends 'nbase.html' %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock %}
+{% block header %}
+<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+<li><a class="nav-link scrollto" href="#about">About</a></li>
+<li><a class="nav-link scrollto" href="#search">Image Search</a></li>
+<li class="dropdown"><a href="#hero"><span>Admin</span> <i class="bi bi-chevron-right"></i></a>
+  <ul>
+    <li><a href="{% url 'csvadd' %}">Add CSV</a></li>
+    <li><a href="{% url 'imageadd' %}">Add Image</a></li>
+  </ul>
+</li>
+<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+{% endblock %}
+{% block maincontent %}
+       <!-- ======= Search Section ======= -->
+       <section id="search" class="services">
+        <div class="container">
+  
+          <div class="section-title">
+            <span>Image Search</span>
+            <h2>Image Search</h2>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-sm-12 col-md-1 col-lg-2"></div>
+              <div class="col-sm-12 col-md-9 col-lg-8">
+                <div class="card p-4">
+                  <div class="card-body">
+                    <form action="search2" method="POST" id="forms" enctype="multipart/form-data">
+                      {%csrf_token%}
+                      <div class="col-sm-12 col-lg-12 col-md-12">
+                          <div class="row">
+                              <div class="col-sm-12 col-md-12 col-lg-6">
+                                  <div class="form-group p-2">
+                                      <label for="" class="font-weight-bold"><b>File</b> </label>
+                                      <input type="file" name="image" id="image" class="form-control" required>
+                                  </div>
+                              </div>
+                              <div class="col-sm-12 col-md-12 col-lg-6">
+                                  <div class="form-group p-2">
+                                      <label for="" class="font-weight-bold"><b>Image Path</b> </label>
+                                      <input type="text" name="path" id="path" class="form-control" required>
+                                  </div>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-12">
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group p-2">
+                                      <label for="" class="font-weight-bold"><b>Output limit</b></label>
+                                      <input type="number" name="limit" id="limit" class="form-control">
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group p-2">
+                                      <label for="" class="font-weight-bold"><b>Max Score</b></label>
+                                      <input type="number" name="max" id="max" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-12">
+                          <div class="row">
+                              <div class="col-2"></div>
+                              <div class="col-sm-12 col-md-12 col-lg-4 m-1">
+                                  <button class="col-12 btn btn-danger" id="freset" type="button" disabled>Reset</button>
+                              </div>
+                              <div class="col-sm-12 col-md-12 col-lg-4 m-1">
+                                 <div class="form-group">
+                                  <button class="col-12 btn btn-primary"type="submit"  id="ldrr">
+                                    Search <i class="fa fa-circle-o-notch fa-spin" id="img1" style="display:none;"></i>
+                                  </button>
+                                  <!-- <input type="submit" value="Search" class="col-12 btn btn-primary" id="ldrr"> -->
+                                 </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-12 p-3" id="laad">
+                          <div class="d-flex justify-content-center">
+                              <img src="{% static '200.gif' %}" id="img1" style="display:none;">
+                            </div>
+                      </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            </form>
+          </div>
+  
+        </div>
+      </section><!-- End Search Section -->
+  
+  
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title">
+          <span>About</span>
+          <h2>About</h2>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+
+ 
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <span>Contact</span>
+          <h2>Contact</h2>
+          
+        </div>
+
+        <div class="row" data-aos="fade-up">
+        </div>
+
+
+      </div>
+    </section><!-- End Contact Section -->
+
+{% endblock %}

@@ -2,59 +2,62 @@
 {% block content %}
 {% load static %}
 <div class="container-fluid">
+    
+    
     <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="mdbtn">
     Launch demo modal
   </button>
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 10002;">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">SIMILAR IMAGES ARE !!!</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="col-sm-12">
-                <h4>Preview</h4>
-                <div class="col-sm-3" id="ogimg">
+            <div class="col-sm-6 col-md-6 col-lg-12">
+                
+                <div id="results" class="">
 
                 </div>
-                <div class="col-sm-9"></div>
             </div>
-            <h4>Result</h4>
-            <div id="results" class="search-results">
-
-            </div>
+           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
         </div>
       </div>
     </div>
-  </div>
-  
-    <div class="col-sm-12 m-2">
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <div class="card m-4">
-                    <div class="card-box p-4">
+  </div> -->
+ 
+    <div class="col-12 m-2">
+       
+        <!-- <div class="row" id="maindiv" style="display: none;z-index: 10001;">
+            <div class="col-sm-2 col-md-2 col-lg-3"></div>
+            <div class="col-sm-8 col-md-8 col-lg-6">
+                <div class="card m-4" style="z-index: 10001;">
+                    <div class="card-header">
+                        <span style="font-weight: bolder;">Image search</span>
+                    </div>
+                    <div class="card-body p-4">
                         <form action="" method="POST" id="forms">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 col-lg-12 col-md-12">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
                                         <div class="form-group p-2">
                                             <label for="" class="">File</label>
                                             <input type="file" name="" id="image" class="form-control" required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
                                         <div class="form-group p-2">
-                                            <label for="" class="">Output limit</label>
-                                            <input type="number" name="" id="limit" class="form-control">
+                                            <label for="" class="">Image Path</label>
+                                            <input type="text" name="" id="path" class="form-control" required>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -62,8 +65,8 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group p-2">
-                                            <label for="" class="">Min score</label>
-                                            <input type="number" name="" id="min" class="form-control">
+                                            <label for="" class="">Output limit</label>
+                                            <input type="number" name="" id="limit" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -76,8 +79,11 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="row">
-                                    <div class="col-sm-4"></div>
-                                    <div class="col-sm-4">
+                                    <div class="col-2"></div>
+                                    <div class="col-sm-12 col-md-12 col-lg-4 m-1">
+                                        <button class="col-12 btn btn-danger" id="freset" type="button" disabled>Reset</button>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-lg-4 m-1">
                                        <div class="form-group">
                                         <input type="submit" value="Search" class="col-12 btn btn-primary">
                                        </div>
@@ -93,8 +99,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="z-index: 100000;height: 47vh;">
+                <a href="{% url 'search' %}" class="btn btn-primary cbtn" style="margin-top: 15%;" >
+                    <h1 style="font-family: Arial, Helvetica, sans-serif;">Let's started <img src="{% static 'media/arrow.png' %}" alt="" width="45" height="25"> </h1>
+                </a>
+            </div>
+        </div>  
     </div>
+    
 </div>
 
 {% endblock %}

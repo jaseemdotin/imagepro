@@ -1,0 +1,76 @@
+{% extends 'nbase.html' %}
+{% load static %}
+{% block title %}
+<title>Result</title>
+{% endblock %}
+{% block header %}
+<li><a class="nav-link scrollto " href="{% url 'home' %}">Image search</a></li>
+{% endblock %}
+{% block hero %}
+{% endblock %}
+{% block maincontent %}
+ <!-- ======= About Section ======= -->
+ <section id="about" class="about">
+    <div class="container">
+        {% if fail %}
+        <script>alert("Invalid image")</script>
+        {% endif %}
+      <div class="section-title">
+        <span>SIMILAR  IMAGES ARE !!!</span>
+        <h2>SIMILAR  IMAGES ARE !!!</h2>
+      </div>
+      <div class="container-fluid">
+          <div class="col-12 m-2">
+             <div class="card" style="margin-top: 5%;z-index: 10000;">
+                 <!-- <div class="card-header">
+                     <span>Result</span>
+                 </div> -->
+                 <div class="card-body">
+                  <div class="col-12">
+                    
+                      <div class="row">
+                          {% if data %}
+                          <div class="col-12 text-center">
+                              
+                              <a href="{% url 'home' %}" class="btn btn-primary">BACK TO SEARCH</a><br>
+                              <br>
+                          </div>
+                          {% for i in data %}
+                          <div class="col-sm-12 col-md-6 col-lg-4">
+                              <div class="card">
+                                  <div class="card-header">
+                                      <span>Score:{{i.score}}</span>
+                                  </div>
+                                  <div class="card-body">
+                                      <img src="{{i.image}}" alt="" class="img-thumbnail">
+                                  </div>
+                              </div>
+                          </div>
+                          {% endfor %}
+                          <div class="text-center">
+                              <br>
+                              <a href="{% url 'home' %}" class="btn btn-primary">BACK TO SEARCH</a>
+                          </div>
+                          {% else %}
+                          <div class="col-12 text-center">
+                              <h2><b><span>No Images To Show</span></b></h2>
+                              <br>
+                              <a href="{% url 'home' %}" class="btn btn-primary">BACK TO SEARCH</a>
+                          </div>
+                          {% endif %}
+      
+                      </div>
+                      
+                      
+                  </div>
+                 </div>
+             </div>
+          </div>
+          
+      </div>
+    </div>
+  </section><!-- End About Section -->
+
+
+
+{% endblock %}
