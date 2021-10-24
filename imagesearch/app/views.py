@@ -1,11 +1,16 @@
+from django.contrib import auth
+from django.contrib.messages.api import error
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.http import JsonResponse, request
 from .models import dataModel, imagetb, indextb, sampletb
 from skimage import io
 import cv2
 from django.views.decorators.csrf import csrf_exempt
 from .work import *
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login,logout
+from django.urls import reverse
 
 def Sort(sub_li):
     l = len(sub_li)
@@ -83,7 +88,27 @@ def homeView(request):
 
 def searchView(request):
 	return render(request,'search.html')
-import json
+
+def adminlogin(request):
+	try:
+		next = (request.GET.get('next'))
+	except:
+		next = '/'
+	if request.method == "POST":
+		
+		uname = request.POST.get('name')
+		passw = request.POST.get('pass')
+		user = auth.authenticate(username = uname,password = passw)
+		if user is not None:
+			auth.login(request,user)
+			return HttpResponseRedirect(next)
+	return render(request,'adminlogin.html')
+
+def adminlogout(request):
+	auth.logout(request)
+	return redirect('home')
+
+@login_required(login_url="login")
 def csvAddView(request):
 	if request.method=="POST":
 		file = request.FILES.get("file")
@@ -98,29 +123,35 @@ def csvAddView(request):
 		data.save()
 	return render(request,'csvadd.html')
 from django.contrib import messages
+
+@login_required(login_url="login")
 def imageAddView(request):
+	dup_list = []
 	if request.method=="POST":
-		file = request.FILES.get("file")
+		file = request.FILES.getlist("file")
 		name = request.POST.get("name")
-		data =imagetb.objects.latest('id')
+		# data =imagetb.objects.latest('id')
 		test = imagetb.objects.all()
 		for i in test:
-			ss = i.image.name.replace('static/dataset/',"")
-			if ss==str(file):
-				messages.error(request,"Duplicate Image")
-				return HttpResponseRedirect('')
-			elif str(file).endswith('.png') or str(file).endswith('.jpeg') or str(file).endswith('.jpg'):
-				break
-			else:
-				messages.error(request,"Image is not valid")
-				return HttpResponseRedirect('')
+			try:
+				ss = i.image.name.replace('static/dataset/',"")
+			except:
+				pass
+			for i in file:
+				if ss==str(i):
+					dup_list.append(i.name)
+					file.remove(i)
 		try:
-			os.remove(data.image.path)
-		except:
+			# os.remove(data.image.path)
+			
+			for i in file:
+				imagetb.objects.create(image=i)
+			messages.success(request,f"{len(file)} item Saved")
+			if dup_list:
+				messages.error(request,f"Duplicate Images {dup_list} Not Saved")
+			return HttpResponseRedirect('')
+		except Exception as e:
+			print(e)
 			pass
-		data.image = file
-		data.name = name
-		data.save()
-		messages.success(request,"saved")
-		return HttpResponseRedirect('')
+		
 	return render(request,'imageadd.html')
