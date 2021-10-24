@@ -11,6 +11,7 @@ from .work import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 def Sort(sub_li):
     l = len(sub_li)
@@ -89,19 +90,32 @@ def homeView(request):
 def searchView(request):
 	return render(request,'search.html')
 
-def adminlogin(request):
-	try:
-		next = (request.GET.get('next'))
-	except:
-		next = '/'
+def AdminRegister(request):
 	if request.method == "POST":
-		
+		uname = request.POST.get('name')
+		passw = request.POST.get('pass')
+		try:
+			User.objects.create_user(username=uname,password=passw)
+			return redirect('login')
+		except:
+			messages.error(request,"Username already exist")
+			return HttpResponseRedirect('')
+	return render(request,'register.html')
+
+def adminlogin(request):
+	if request.method == "POST":
+		next = (request.GET.get('next'))
 		uname = request.POST.get('name')
 		passw = request.POST.get('pass')
 		user = auth.authenticate(username = uname,password = passw)
 		if user is not None:
 			auth.login(request,user)
-			return HttpResponseRedirect(next)
+			if next:
+				return HttpResponseRedirect(next)
+			else:
+				return redirect('home')
+		else:
+			messages.error(request,'Incorrect Username or password')
 	return render(request,'adminlogin.html')
 
 def adminlogout(request):

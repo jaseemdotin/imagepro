@@ -25,5 +25,6 @@ urlpatterns = [
     path('csvadd',views.csvAddView,name="csvadd"),
     path('imageadd',views.imageAddView,name="imageadd"),
     path('login',views.adminlogin,name="login"),
-    path('logout',views.adminlogout,name="logout")
+    path('logout',views.adminlogout,name="logout"),
+    path('register',views.AdminRegister,name='register')
 ]

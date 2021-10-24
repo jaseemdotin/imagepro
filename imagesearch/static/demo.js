@@ -3,11 +3,30 @@ $(document).ready(function() {
     $("#mdbtn").hide()
     //modalControl();
     //getAllImages();
+    $( "#ralert" ).hide()
 
     $( "#lstart" ).click(function() {
       $(this).fadeOut(500)
       $("#maindiv").show(1000)
     });
+
+    $( "#sregister" ).click(function() {
+      var p1 = $( "#cp1" ).val()
+      var p2 = $("#cp2").val()
+      if(p1 == ""){
+        $( "#ralert" ).text("Password Can not be Null").fadeIn(1000).fadeOut(4000);
+        return false;
+      }
+      else if(!(p1 == p2)){
+        $( "#ralert" ).text("Password Mismatch").fadeIn(1000).fadeOut(4000);
+        //$( "#ralert" ).empty()
+        return false;
+      }
+      else{
+        return true;
+      }
+    });
+
     $( "#ldrr" ).click(function() {
       var imgVal = $('#image').val(); 
       var pathVal = $('#path').val(); 
