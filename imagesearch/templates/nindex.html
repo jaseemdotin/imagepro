@@ -6,7 +6,7 @@
 {% block header %}
 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
 <li><a class="nav-link scrollto" href="#about">About</a></li>
-<li><a class="nav-link scrollto" href="#search">Image Search</a></li>
+<li><a class="nav-link scrollto" href="{% url 'search' %}">Image Search</a></li>
 <li class="dropdown"><a href="#hero"><span>Admin</span> <i class="bi bi-chevron-right"></i></a>
   <ul>
     <li><a href="{% url 'csvadd' %}">Add CSV</a></li>
@@ -17,7 +17,7 @@
 {% endblock %}
 {% block maincontent %}
        <!-- ======= Search Section ======= -->
-       <section id="search" class="services">
+       <!-- <section id="search" class="services">
         <div class="container">
   
           <div class="section-title">
@@ -76,7 +76,7 @@
                                   <button class="col-12 btn btn-primary"type="submit"  id="ldrr">
                                     Search <i class="fa fa-circle-o-notch fa-spin" id="img1" style="display:none;"></i>
                                   </button>
-                                  <!-- <input type="submit" value="Search" class="col-12 btn btn-primary" id="ldrr"> -->
+
                                  </div>
                               </div>
                           </div>
@@ -96,7 +96,8 @@
           </div>
   
         </div>
-      </section><!-- End Search Section -->
+      </section> -->
+      <!-- End Search Section -->
   
   
     <!-- ======= About Section ======= -->

@@ -4,7 +4,7 @@
 <title>Result</title>
 {% endblock %}
 {% block header %}
-<li><a class="nav-link scrollto " href="{% url 'home' %}">Image search</a></li>
+<li><a class="nav-link scrollto " href="{% url 'search' %}">Image search</a></li>
 {% endblock %}
 {% block hero %}
 {% endblock %}
@@ -29,12 +29,12 @@
                   <div class="col-12">
                     
                       <div class="row">
-                          {% if data %}
-                          <div class="col-12 text-center">
+                        <div class="col-12 text-center">
                               
-                              <a href="{% url 'home' %}" class="btn btn-primary">BACK TO SEARCH</a><br>
-                              <br>
-                          </div>
+                            <a href="{% url 'search' %}" class="btn btn-primary">BACK TO SEARCH</a><br>
+                            <br>
+                        </div>
+                          {% if data %}
                           {% for i in data %}
                           <div class="col-sm-12 col-md-6 col-lg-4">
                               <div class="card">
@@ -47,15 +47,11 @@
                               </div>
                           </div>
                           {% endfor %}
-                          <div class="text-center">
-                              <br>
-                              <a href="{% url 'home' %}" class="btn btn-primary">BACK TO SEARCH</a>
-                          </div>
                           {% else %}
                           <div class="col-12 text-center">
                               <h2><b><span>No Images To Show</span></b></h2>
                               <br>
-                              <a href="{% url 'home' %}" class="btn btn-primary">BACK TO SEARCH</a>
+                              <!-- <a href="{% url 'home' %}" class="btn btn-primary">BACK TO SEARCH</a> -->
                           </div>
                           {% endif %}
       

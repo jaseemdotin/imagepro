@@ -4,7 +4,7 @@ $(document).ready(function() {
     //modalControl();
     //getAllImages();
     $( "#ralert" ).hide()
-
+    
     $( "#lstart" ).click(function() {
       $(this).fadeOut(500)
       $("#maindiv").show(1000)
