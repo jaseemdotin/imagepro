@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .search import imgTest
 
 def Sort(sub_li):
     l = len(sub_li)
@@ -22,9 +23,38 @@ def Sort(sub_li):
                 sub_li[j]= sub_li[j + 1]
                 sub_li[j + 1]= tempo
     return sub_li
-
-
 def resultView(request):
+	RESULT = []
+	if request.method == "POST":
+		image = request.FILES.get('image')
+		try:
+			limit = int(request.POST.get('limit'))
+		except:
+			limit = 10
+		try:
+			paths = request.POST.get('path')
+		except:
+			paths = None
+		try:
+			max = int(request.POST.get('max'))
+		except:
+			max = 101
+		try:
+			data = sampletb.objects.latest('id')
+			if data.image:
+				os.remove(data.image.path)
+		except:
+			data = sampletb.objects.create(image=image)
+		data.image=image
+		data.save()
+		if not limit:
+			limit = 10
+		src = imgTest(data.image.path,limit)
+		print(src)
+		return render(request,"result.html",{"data":src})
+	return render(request,"result.html")
+
+def resultView1(request):
 	RESULTS_ARRAY = []
 	RESULT = []
 	if request.method == "POST":
@@ -165,7 +195,7 @@ def imageAddView(request):
 				messages.error(request,f"Duplicate Images {dup_list} Not Saved")
 			return HttpResponseRedirect('')
 		except Exception as e:
-			print(e)
+			print("error" ,e)
 			pass
 		
 	return render(request,'imageadd.html')
