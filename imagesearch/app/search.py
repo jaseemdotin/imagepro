@@ -9,7 +9,13 @@ def imgTest(path,limit=10,max=100):
     import matplotlib.image as mpimg
     import argparse
 
-
+    # from PIL import Image
+    # filename=path.split(".")
+    # target_name = filename[0] + ".jpg"
+    # image = Image.open(path)
+    # rgb_image = image.convert('RGB')
+    # rgb_image.save(target_name)
+    # print(111111111)
     # ap = argparse.ArgumentParser()
     # ap.add_argument("-query", required = False,
     #     help = "Path to query which contains image to be queried")
@@ -63,8 +69,9 @@ def imgTest(path,limit=10,max=100):
     result = []
     for i,im in enumerate(imlist):
         imlist[i] = str(imlist[i]).replace('b','').replace("'",'')
-        imlist[i] = 'static/dataset/' + str(imlist[i])
-        result.append({'score':rank_score[i], 'image':imlist[i]}) 
+        name = imlist[i]
+        imlist[i] = f'static/dataset/{str(imlist[i])}'
+        result.append({'score':rank_score[i], 'image':imlist[i],'name':name}) 
         # image = mpimg.imread(r"C:\Users\jasee\OneDrive\Desktop\Projects\pro\deep\database"+"/"+str(im, 'utf-8'))
         # plt.title("search output %d" %(i+1))
         # plt.imshow(image)

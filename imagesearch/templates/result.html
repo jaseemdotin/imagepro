@@ -21,13 +21,19 @@
       </div>
       <div class="container-fluid">
           <div class="col-12 m-2">
-             <div class="card" style="margin-top: 5%;z-index: 10000;">
+             <div class="card">
+                 <!-- <img src="{% static 'dataset/2_mask.tif' %}" alt=""> -->
                  <!-- <div class="card-header">
                      <span>Result</span>
                  </div> -->
                  <div class="card-body">
                   <div class="col-12">
-                    
+                    <div class="row">
+                        <div class="col-sm-2 col-md-3 col-lg-3"></div>
+                        <div class="col-sm-8 col-md-6 col-lg-6">
+                            <img src={{qimage.image.url}} alt="working" class="img img-thumbnail">
+                        </div>
+                    </div>
                       <div class="row">
                         <div class="col-12 text-center">
                               
@@ -39,7 +45,8 @@
                           <div class="col-sm-12 col-md-6 col-lg-4">
                               <div class="card">
                                   <div class="card-header">
-                                      <span>Score:{{i.score}}</span>
+                                      <span>Name:<strong> {{i.name}}</strong></span><br>
+                                      <span>Score:<strong>{{i.score}}</strong> </span>
                                   </div>
                                   <div class="card-body">
                                       <img src="{{i.image}}" alt="" class="img-thumbnail">

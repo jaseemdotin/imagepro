@@ -36,7 +36,7 @@ def resultView(request):
 		except:
 			paths = None
 		try:
-			max = int(request.POST.get('max'))
+			max = float(request.POST.get('max'))
 		except:
 			max = 101
 		try:
@@ -50,8 +50,12 @@ def resultView(request):
 		if not limit:
 			limit = 10
 		src = imgTest(data.image.path,limit)
-		print(src)
-		return render(request,"result.html",{"data":src})
+		if max:
+			for r,i in enumerate(src):
+				d =  i.get('score')
+				if d < max:
+					del src[r]
+		return render(request,"result.html",{"data":src,'qimage':data})
 	return render(request,"result.html")
 
 def resultView1(request):
