@@ -5,8 +5,9 @@
 <title>CSV Add</title>
 {% endblock %}
 {% block header %}
-<li><a class="nav-link scrollto " href="{% url 'csvadd' %}">CSV Add</a></li>
-<li><a class="nav-link scrollto " href="{% url 'imageadd' %}">Image Add</a></li>
+<li><a class="nav-link scrollto " href="{% url 'csvadd' %}">MODEL</a></li>
+<li><a class="nav-link scrollto " href="{% url 'imageadd' %}">DATABASE</a></li>
+<li><a class="nav-link scrollto " href="{% url 'userlist' %}">USERS</a></li>
 {% endblock %}
 {% block hero %}
 {% endblock %}
@@ -26,6 +27,15 @@
           <div class="col-sm-12 col-md-1 col-lg-2"></div>
           <div class="col-sm-12 col-md-9 col-lg-8">
             <div class="card p-4">
+              <div class="text-center">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
               <div class="card-body">
                 <form action="search2" method="POST" id="forms" enctype="multipart/form-data">
                   {%csrf_token%}
@@ -49,16 +59,29 @@
                   <div class="col-sm-12">
                       <div class="row">
                           <div class="col-sm-6">
-                              <div class="form-group p-2">
-                                  <label for="" class="font-weight-bold"><b>Output limit</b></label>
-                                  <input type="number" name="limit" id="limit" class="form-control">
-                              </div>
+                            <div class="form-group p-2">
+                              <label for="" class="">Image Type</label>
+                                <select name="sname" id="" class="form-select">
+                                    <option value="plant">Plants</option>
+                                    <option value="animals">Animals</option>
+                                </select>
+                          </div>
                           </div>
                           <div class="col-sm-6">
-                              <div class="form-group p-2">
-                                  <label for="" class="font-weight-bold"><b>Min Score</b></label>
-                                  <input type="number" step="0.01" name="max" id="max" class="form-control">
-                              </div>
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="form-group p-2">
+                                    <label for="" class="font-weight-bold"><b>Output limit</b></label>
+                                    <input type="number" name="limit" id="limit" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group p-2">
+                                    <label for="" class="font-weight-bold"><b>Min Score</b></label>
+                                    <input type="number" step="0.01" name="max" id="max" class="form-control">
+                                </div>
+                            </div>
+                            </div>
                           </div>
                       </div>
                   </div>

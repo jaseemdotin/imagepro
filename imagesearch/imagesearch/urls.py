@@ -26,5 +26,8 @@ urlpatterns = [
     path('imageadd',views.imageAddView,name="imageadd"),
     path('login',views.adminlogin,name="login"),
     path('logout',views.adminlogout,name="logout"),
-    path('register',views.AdminRegister,name='register')
+    path('register',views.AdminRegister,name='register'),
+    path('userlist',views.userlistview,name='userlist'),
+    path('userlist/act/<int:id>',views.activateUserView,name='useractivate'),
+    path('userlist/deact/<int:id>',views.deactivateUserView,name='userdeactivate'),
 ]

@@ -2,7 +2,7 @@
 {% extends 'nbase.html' %}
 {% load static %}
 {% block title %}
-<title>CSV Add</title>
+<title>User Registration</title>
 {% endblock %}
 
 {% block hero %}
@@ -10,7 +10,7 @@
 {% block maincontent %}
 
  <!-- ======= About Section ======= -->
- <section id="about" class="about">
+ <section id="about" class="about" style="margin-top: -4%; z-index: 100;">
     <div class="container">
 
       <div class="section-title">
@@ -26,11 +26,14 @@
                           <div class="card">
                               
                               <div class="card-body">
-                                  <form method="POST" enctype="multipart/form-data" id="registerform">
+                                  <form method="POST" enctype="multipart/form-data" id="registerform" autocomplete="off">
                                       {% csrf_token %}
                                       <div class="col-sm-12 col-lg-12 col-md-12">
                                           <div class="row">
                                             <div class="col-12">
+                                                <div class="alert alert-danger" role="alert" id="al1">
+                                                    
+                                                </div>
                                                 <div class="alert alert-danger" role="alert" id="ralert"> </div>
                                                 {% for i in  messages %}
                                                 <div class="alert alert-danger" role="alert" id="malert">
@@ -42,13 +45,24 @@
                                                 {% endfor %}
                                             </div>
                                               <div class="col-sm-12 col-md-12 col-lg-12">
-                                                  <div class="form-group p-2 text-center">
-                                                     
-                                                      <label for="" class=""><strong>USERNAME</strong></label>
-                                                      <input type="text" name="name" id="" class="form-control" autocomplete="" required>
-                                                  </div>
-                                                  
+                                                <div class="form-group p-2 text-center">
+                                                    <label for="" class=""><strong>USERNAME</strong></label>
+                                                    <input type="text" name="name" id="uname" class="form-control" autocomplete="" required>
+                                                </div>
                                               </div>
+                                              <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-inline p-2 text-center">
+                                                    <label for="" class=""><strong>EMPLOYEE ID</strong></label>
+                                                    <input type="text" name="empid" id="empid" class="form-control" autocomplete="off" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group p-2 text-center">
+                                                   
+                                                    <label for="" class=""><strong>EMAIL</strong></label>
+                                                    <input type="text" name="email" id="email" class="form-control" autocomplete="" required>
+                                                </div>
+                                            </div>
                                               <div class="col-sm-12 col-md-12 col-lg-12">
                                                 <div class="form-group p-2 text-center">
                                                     <label for="" class=""><strong>PASSWORD</strong></label>

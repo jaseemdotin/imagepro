@@ -10,9 +10,8 @@
 {% block maincontent %}
 
  <!-- ======= About Section ======= -->
- <section id="about" class="about">
+ <section id="about" class="about" style="margin-top: -4%;">
     <div class="container">
-
       <div class="section-title">
         <span>LOGIN</span>
         <h2>LOGIN</h2>
@@ -24,7 +23,6 @@
                       <div class="col-4"></div>
                       <div class="col-sm-12 col-md-6 col-lg-4">
                           <div class="card">
-                              
                               <div class="card-body">
                                   <form method="POST" enctype="multipart/form-data" id="loginform">
                                       {% csrf_token %}
@@ -42,12 +40,22 @@
                                           <div class="row">
                                               <div class="col-sm-12 col-md-12 col-lg-12">
                                                   <div class="form-group p-2 text-center">
-                                                     
                                                       <label for="" class=""><strong>USERNAME</strong></label>
                                                       <input type="text" name="name" id="" class="form-control" required>
                                                   </div>
-                                                  
                                               </div>
+                                              <!-- <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group p-2 text-center">
+                                                    <label for="" class=""><strong>EMPLOYEE ID</strong></label>
+                                                    <input type="text" name="empid" id="" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group p-2 text-center">
+                                                    <label for="" class=""><strong>EMAIL</strong></label>
+                                                    <input type="text" name="email" id="" class="form-control" required>
+                                                </div>
+                                            </div> -->
                                               <div class="col-sm-12 col-md-12 col-lg-12">
                                                 <div class="form-group p-2 text-center">
                                                     <label for="" class=""><strong>PASSWORD</strong></label>

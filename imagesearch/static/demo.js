@@ -1,5 +1,16 @@
 $(document).ready(function() {
+  var passPatter = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+  $("#al1").hide()
     console.log("ready");
+    $("#cp1").keyup(function(){
+      var pattern = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/)
+      var p1= $("#cp1").val()
+      var t = pattern.test(p1)
+      if(t==false){
+        console.log(false)
+        $("#cp1").text('Password contain atleast 1 uppercase, 1 lowercase and a special character').fadeIn(2000)
+      }
+    });
     $("#mdbtn").hide()
     //modalControl();
     //getAllImages();
@@ -13,6 +24,12 @@ $(document).ready(function() {
     $( "#sregister" ).click(function() {
       var p1 = $( "#cp1" ).val()
       var p2 = $("#cp2").val()
+      var pattern = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/)
+      var t = pattern.test(p1)
+      if(t==false){
+        $( "#ralert" ).text("Password contain atleast 1 uppercase, 1 lowercase and a special character").fadeIn(1000).fadeOut(4000);
+        return false;
+      }
       if(p1 == ""){
         $( "#ralert" ).text("Password Can not be Null").fadeIn(1000).fadeOut(4000);
         return false;
@@ -26,6 +43,36 @@ $(document).ready(function() {
         return true;
       }
     });
+    // function checkCount(){
+    //   var numFiles = $("input:file", this)[0].files.length;
+    //   console.log([11111,numFiles])
+    //   return false;
+    // }
+    // function UserCreation(){
+    //   var p1 = $( "#cp1" ).val()
+    //   var p2 = $("#cp2").val()
+    //   $.ajax({
+    //     url : "/search2",
+    //     type: "POST",
+    //     data : formData,
+    //     processData: false,
+    //     contentType: false,
+    //     success:function(data){
+    //        console.log(data)
+    //         displayResults(data)
+    //         $("#mdbtn").click()
+    //         $('#img1').hide();
+
+    //     },
+    //     error: function(error){
+    //         console.log(error) 
+    //         alert("Only formats are allowed : "+fileExtension.join(', '));  
+    //         $('#img1').hide();
+    //     }
+    // });
+    // }
+
+    
 
     $( "#ldrr" ).click(function() {
       var imgVal = $('#image').val(); 

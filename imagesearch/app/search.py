@@ -1,5 +1,5 @@
-from .models import indextb
-def imgTest(path,limit=10,max=100):
+from .models import indextbanimal, indextbplant
+def imgTest(path,limit=10,max=1,type='plant'):
     from .train import VGGNetA
 
     import numpy as np
@@ -27,7 +27,10 @@ def imgTest(path,limit=10,max=100):
 
 
     # read in indexed images' feature vectors and corresponding image names
-    hsfile = indextb.objects.latest('id')
+    if type == 'plant':
+        hsfile = indextbplant.objects.latest('id')
+    else:
+        hsfile = indextbanimal.objects.latest('id')
     h5f = h5py.File(hsfile.image.path,'r')
     # feats = h5f['dataset_1'][:]
     feats = h5f['dataset_1'][:]
@@ -62,7 +65,8 @@ def imgTest(path,limit=10,max=100):
 
     # number of top retrieved images to show
     maxres = limit
-    imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:maxres])]
+    # print(rank_score,'test')
+    imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:150])]
     #print("top %d images in order are: " %maxres, imlist)
 
     # show top #maxres retrieved result one by one
@@ -70,10 +74,19 @@ def imgTest(path,limit=10,max=100):
     for i,im in enumerate(imlist):
         imlist[i] = str(imlist[i]).replace('b','').replace("'",'')
         name = imlist[i]
-        imlist[i] = f'static/dataset/{str(imlist[i])}'
-        result.append({'score':rank_score[i], 'image':imlist[i],'name':name}) 
+        
+        if type=='plant':
+            imlist[i] = f'static/plantdataset/{str(imlist[i])}'
+            result.append({'score':rank_score[i], 'image':imlist[i],'name':name}) 
+        else:
+            imlist[i] = f'static/animaldataset/{str(imlist[i])}'
+            result.append({'score':rank_score[i], 'image':imlist[i],'name':name}) 
+        
         # image = mpimg.imread(r"C:\Users\jasee\OneDrive\Desktop\Projects\pro\deep\database"+"/"+str(im, 'utf-8'))
         # plt.title("search output %d" %(i+1))
         # plt.imshow(image)
         # plt.show()
+    #result = sorted(result, key = lambda i: i['score'],reve)
+    # for i in result:
+    #     if i
     return result

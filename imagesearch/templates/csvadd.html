@@ -5,8 +5,9 @@
 <title>CSV Add</title>
 {% endblock %}
 {% block header %}
-<li><a class="nav-link scrollto " href="{% url 'csvadd' %}">MODEL Add</a></li>
-<li><a class="nav-link scrollto " href="{% url 'imageadd' %}">Image Add</a></li>
+<li><a class="nav-link scrollto " href="{% url 'csvadd' %}">MODEL</a></li>
+<li><a class="nav-link scrollto " href="{% url 'imageadd' %}">DATABASE</a></li>
+li><a class="nav-link scrollto " href="{% url 'userlist' %}">USERS</a></li>
 {% endblock %}
 {% block hero %}
 {% endblock %}
@@ -17,8 +18,8 @@
     <div class="container">
 
       <div class="section-title">
-        <span>Add MODEL</span>
-        <h2>Add MODEL</h2>
+        <span>ADD MODEL</span>
+        <h2>MODEL</h2>
       </div>
       <div class="container-fluid">
   
@@ -36,7 +37,10 @@
                                               <div class="col-sm-12 col-md-12 col-lg-12">
                                                   <div class="form-group p-2">
                                                       <label for="" class="">Name</label>
-                                                      <input type="text" name="name" id="" class="form-control" >
+                                                      <select name="name" id="" class="form-select">
+                                                        <option value="plant">Plants</option>
+                                                        <option value="Animals">Animals</option>
+                                                    </select>
                                                   </div>
                                                   
                                               </div>

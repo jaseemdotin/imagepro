@@ -1,0 +1,37 @@
+
+{% extends 'nbase.html' %}
+{% load static %}
+{% block title %}
+<title>User Management</title>
+{% endblock %}
+{% block header %}
+<li><a class="nav-link scrollto" href="{% url 'search' %}">Image Search</a></li>
+{% if user.is_staff or user.is_superuser %}
+<li class="dropdown"><a href="#hero"><span>Settings</span> <i class="bi bi-chevron-right"></i></a>
+    <ul>
+      <li><a href="{% url 'csvadd' %}">MODEL</a></li>
+      <li><a href="{% url 'imageadd' %}">DATABASE</a></li>
+      {% if user.is_superuser %}
+      <li><a href="{% url 'userlist' %}">USERS</a></li>
+      {% endif %}
+    </ul>
+  </li>
+  {% endif %}
+
+{% endblock %}
+{% block hero %}
+{% endblock %}
+{% block maincontent %}
+
+ <!-- ======= User Section ======= -->
+ <section id="about" class="about">
+    <center>
+        <h2>
+            <strong>Not Found/404</strong>
+        </h2>
+    </center>
+ </section><!-- End About Section -->
+
+
+
+{% endblock %}
