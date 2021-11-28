@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='AnimalTB',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.FileField(null=True, upload_to=app.models.fa)),
+                ('image', models.FileField(null=True, upload_to=app.models)),
             ],
         ),
         migrations.CreateModel(
@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
             name='PlantTB',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.FileField(null=True, upload_to=app.models.fp)),
+                ('image', models.FileField(null=True, upload_to=app.models)),
             ],
         ),
         migrations.CreateModel(

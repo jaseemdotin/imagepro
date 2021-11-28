@@ -16,6 +16,16 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
+                <div class="col-12 text-center">
+                    {% for i in  messages %}
+                    <div class="alert alert-danger" role="alert" id="malert1">
+                        {{i}}
+                    </div>
+                    <script>
+                        $("#malert1").fadeOut(5000);
+                    </script>
+                    {% endfor %}
+                </div>
                 <div class="p-2">
                     <table class="table table-hover table-sm table-bordered">
                         <tr class="bg-primary text-white">

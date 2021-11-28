@@ -41,7 +41,7 @@ def searchView(request):
 @login_required(login_url="login")
 @admin_only
 def userlistview(request):
-	data = User.objects.filter()
+	data = User.objects.all()
 	paginator = Paginator(data, 15) # Show 25 contacts per page.
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
@@ -59,7 +59,10 @@ def activateUserView(request, id):
 @admin_only
 def deactivateUserView(request, id):
 	data = User.objects.get(id=id)
-	data.delete()
+	if data.username=='user':
+		messages.info(request, "can't delete admin")
+	else:
+		data.delete()
 	return redirect(userlistview)
 
 def AdminRegister(request):
