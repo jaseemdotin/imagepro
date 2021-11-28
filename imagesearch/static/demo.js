@@ -27,7 +27,7 @@ $(document).ready(function() {
       var pattern = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/)
       var t = pattern.test(p1)
       if(t==false){
-        $( "#ralert" ).text("Password contain atleast 1 uppercase, 1 lowercase and a special character").fadeIn(1000).fadeOut(4000);
+        $( "#ralert" ).text("Password contain atleast 1 uppercase, 1 lowercase 1 number and a special character(minimum 7 character)").fadeIn(1000).fadeOut(4000);
         return false;
       }
       if(p1 == ""){

@@ -1,0 +1,291 @@
+
+{% extends 'nbase.html' %}
+{% load static %}
+{% block title %}
+<title>CSV Add</title>
+{% endblock %}
+{% block style %}
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.min.css">
+    
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block hero %}
+{% endblock %}
+{% block maincontent %}
+
+ <!-- ======= About Section ======= -->
+ <!-- MODAL TO CROP THE IMAGE -->
+<div class="modal fade " id="modalCrop">
+  <div class="modal-dialog modal-lg p-4">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Crop the photo</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-1"></div>
+            <div class="col-sm-12 col-md-12 col-lg-10">
+              <img src="" id="image" style="display: block;max-width: 100%;">
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="btn-group pull-left" role="group">
+          <button type="button" class="btn btn-default js-zoom-in">
+            <li class="fa fa-plus"></li>
+          </button>
+          <button type="button" class="btn btn-default js-zoom-out">
+            <li class="fa fa-minus"></li>
+          </button>
+        </div>
+        <button type="button" class="btn btn-danger" id="mdclose">Close</button>
+        <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <section id="imgsearch" class="services" style="margin-top: -5%S;">
+    <div class="container">
+
+      <div class="section-title">
+        <span>Image Search</span>
+        <h2>Image Search</h2>
+        <h6>add description here</h6>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-sm-12 col-md-1 col-lg-2"></div>
+          <div class="col-sm-12 col-md-9 col-lg-8">
+            
+              <div class="">
+                <form method="POST" id="" enctype="multipart/form-data" onsubmit="return newFNvalid();">
+                  {%csrf_token%}
+                  <div class="col-12">
+                      <div class="row">
+                          <div class="col-sm-12 col-md-3 col-lg-3"></div>
+                          <div class="col-sm-12 col-md-6 col-lg-6 border p-4">
+                              <div class="form-group p-2">
+                                  <label for="" class="font-weight-bold"><b>File</b> </label>
+                                  <input type="file" name="image" id="id_image" accept="image/png, image/jpeg" class="form-control" required>
+                              </div>
+                              <div class="form-group p-2">
+                                <label for="" class="font-weight-bold"><b>Output limit</b></label>
+                                <input type="number" name="limit" id="limit" class="form-control">
+                            </div>
+                            <div class="form-group p-2">
+                                <label for="" class="font-weight-bold"><b>Min Score</b></label>
+                                <input type="number" step="0.01" name="max" id="max" class="form-control">
+                            </div>
+                            <div class="form-group" id="frhide">
+                              <input type="text" id="fw" name="fw">
+                              <input type="text" id="fh" name="fh">
+                              <input type="text" id="fx" name="fx">
+                              <input type="text" id="fy" name="fy">
+                            </div>
+                            <div class="form-group p-2 text-center">
+                                <!-- <button class="btn btn-primary"type="submit"  id="ldrr">Search</button> -->
+                                <button type="submit" class="btn btn-primary" id="" >Search</button>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-12 col-lg-6" style="display: none;">
+                              <div class="form-group p-2">
+                                  <label for="" class="font-weight-bold"><b>Image Path</b> </label>
+                                  <input type="text" name="path" id="path" class="form-control"   required>
+                              </div>
+                              
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-12">
+                      <div class="row">
+                          <div class="col-sm-6">
+                            
+                          </div>
+                            <div class="col-sm-6">
+                                
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-12" >
+                      <div class="row">
+                          <div class="col-2"></div>
+                          <div class="col-sm-12 col-md-12 col-lg-4 m-1" style="display: none;">
+                              <button class="col-12 btn btn-danger" id="freset" type="button" disabled>Reset</button>
+                          </div>
+                          <div class="col-sm-12 col-md-12 col-lg-4 m-1">
+                             <div class="form-group">
+                              <!-- <button class="btn btn-primary"type="submit"  id="ldrr">
+                                Search
+                              </button> -->
+                              <!-- <input type="submit" value="Search" class="col-12 btn btn-primary" id="ldrr"> -->
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+            </div>
+            </div>
+          </div>
+        </div>
+       
+        </form>
+      </div>
+
+    </div>
+</section>
+<section id="forloader" style="display: none;">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                <div class="spinner-border text-primary" style="height: 100px; width: 100px;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <section id="imgresult">
+    <div class="container">
+        <!-- {% if fail %} -->
+        <script>alert("Invalid image")</script>
+        <!-- {% endif %} -->
+      <div class="section-title">
+        <span>SIMILAR  IMAGES ARE !!!</span>
+        <h2>SIMILAR  IMAGES ARE !!!</h2>
+      </div>
+      <div class="container-fluid">
+          <div class="col-12 m-2">
+             <div class="card">
+                 <div class="card-body">
+                  <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="col-12">
+                                <h6><strong>Query Image</strong></h6>
+                                <img src="" class="img img-thumbnail" style="max-height: 280px;" id="primage">
+                            </div>
+                        </div>
+                        
+                    </div>
+                      <div class="row">
+                        <div class="col-12 text-center m-2">
+                            <button class="btn btn-primary" id="forsearch">BACK TO SEARCH</button>
+                            <a href="#" class="btn btn-outline-primary prev" >Previous</a>
+                            <a href="#" class="btn btn-outline-primary next">Next</a>
+                            <p><span id="crt"></span> out of <span id="tot"></span></p>
+                            <br>
+                        </div>
+                          <div class="col-12">
+                            <div class="row" id="imres">
+                                
+                            </div>
+                          </div>
+                          <!-- <div class="col-12 text-center">
+                              <h2><b><span>No Images To Show</span></b></h2>
+                              <br>
+                          </div> -->
+      
+                      </div>
+                      
+                      
+                  </div>
+                 </div>
+             </div>
+          </div>
+          
+      </div>
+    </div>
+  </section>
+  
+
+{% endblock %}
+{% block script %}
+<script>
+  function newFNvalid(){
+    $("#fw").val(CropData['width']);
+    $("#fh").val(CropData['height']);
+    $("#fx").val(CropData['x']);
+    $("#fy").val(CropData['y']);
+    return true
+  }
+</script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cropper/1.0.1/jquery-cropper.min.js" integrity="sha512-V8cSoC5qfk40d43a+VhrTEPf8G9dfWlEJgvLSiq2T2BmgGRmZzB8dGe7XAABQrWj3sEfrR5xjYICTY4eJr76QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+  $('document').ready(function() {
+    $("#frhide").hide()
+    $("#mdclose").click(function(){
+      $("#modalCrop").modal("hide");
+    })
+    $("#id_image").change(function (e) {
+  if (this.files && this.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $("#image").attr("src", e.target.result);
+      $("#modalCrop").modal("show");
+    }
+    reader.readAsDataURL(this.files[0]);
+  }
+});
+var $image = $("#image");
+  var cropBoxData;
+  var canvasData;
+  $("#modalCrop").on("shown.bs.modal", function () {
+    $image.cropper({
+      responsive:true,
+      ready: function () {
+        $image.cropper("setCanvasData", canvasData);
+        $image.cropper("setCropBoxData", cropBoxData);
+      }
+    });
+  }).on("hidden.bs.modal", function () {
+    cropBoxData = $image.cropper("getCropBoxData");
+    canvasData = $image.cropper("getCanvasData");
+    $image.cropper("destroy");
+  });
+  // Enable zoom in button
+$(".js-zoom-in").click(function () {
+  $image.cropper("zoom", 0.1);
+});
+ 
+// Enable zoom out button
+$(".js-zoom-out").click(function () {
+  $image.cropper("zoom", -0.1);
+});
+ var cropData;
+/* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+$(".js-crop-and-upload").click(function () {
+  var cropData = $image.cropper("getData");
+  var formData = new FormData();
+  formData.append('cropdata',cropData)
+  $("#id_x").val(cropData["x"]);
+  $("#id_y").val(cropData["y"]);
+  $("#id_image_height").val(cropData["height"]);
+  $("#id_image_width").val(cropData["width"]);
+  CropData = cropData
+  // $("#formUploadButton").clkick();
+  $("#modalCrop").modal("hide");
+});
+});
+  
+ 
+</script>
+{% endblock %}

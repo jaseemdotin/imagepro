@@ -1,0 +1,99 @@
+{% extends 'nbase.html' %}
+{% load static %}
+{% block title %}
+<title>Result</title>
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block hero %}
+{% endblock %}
+{% block maincontent %}
+ <!-- ======= About Section ======= -->
+ <section id="about" class="about" style="margin-top: -2%;">
+    <div class="container">
+        {% if fail %}
+        <script>alert("Invalid image")</script>
+        {% endif %}
+      <div class="section-title">
+        <span>SIMILAR  IMAGES ARE !!!</span>
+        <h2>SIMILAR  IMAGES ARE !!!</h2>
+      </div>
+      <div class="container-fluid">
+          <div class="col-12 m-2">
+             <div class="card">
+                 <!-- <img src="{% static 'dataset/2_mask.tif' %}" alt=""> -->
+                 <!-- <div class="card-header">
+                     <span>Result</span>
+                 </div> -->
+                 <div class="card-body">
+                  <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="col-12">
+                                <h6><strong>Preview</strong></h6>
+                                <img src={{qimage.image.url}} class="img img-thumbnail" style="max-height: 280px;">
+                            </div>
+                        </div>
+                        
+                    </div>
+                      <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="{% url 'search' %}" class="btn btn-primary m-2">BACK TO SEARCH</a>
+                            {% if page_obj %}
+                            
+                          <div class="col-12">
+                              <div class="row">
+                                {% for i in page_obj %}
+                                <div class="col-sm-12 col-md-6 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img src="{{i.image}}" alt="" class="img-thumbnail">
+                                        </div>
+                                        <div class="card-header">
+                                          <span>Name:<strong> {{i.name}}</strong></span><br>
+                                          <span>Score:<strong>{{i.score}}</strong> </span>
+                                      </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                              </div>
+                          </div>
+                          
+                            <!-- <a href="#" class="btn btn-outline-primary prev" >Previous</a>
+                            <a href="#" class="btn btn-outline-primary next">Next</a> -->
+                            <div class="pagination m-2">
+                                <span class="step-links">
+                                    {% if page_obj.has_previous %}
+                                        <a class="btn btn-primary" href="?page=1">&laquo; First</a>
+                                        <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                    {% endif %}
+                            
+                                    <span class="current">
+                                        Page <span class="btn btn-info">{{ page_obj.number }}</span> of <span class="btn btn-info">{{ page_obj.paginator.num_pages }}</span>.
+                                    </span>
+                            
+                                    {% if page_obj.has_next %}
+                                        <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                        <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            {% endif %}
+                            <br>
+                        </div>
+      
+                      </div>
+                      
+                      
+                  </div>
+                 </div>
+             </div>
+          </div>
+          
+      </div>
+    </div>
+  </section><!-- End About Section -->
+
+
+
+{% endblock %}

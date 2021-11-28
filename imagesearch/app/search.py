@@ -1,5 +1,5 @@
-from .models import indextbanimal, indextbplant
-def imgTest(path,limit=10,max=1,type='plant'):
+from .models import DSmodel
+def imgTest(path,limit=10,max=1,type='airbus'):
     from .train import VGGNetA
 
     import numpy as np
@@ -27,10 +27,7 @@ def imgTest(path,limit=10,max=1,type='plant'):
 
 
     # read in indexed images' feature vectors and corresponding image names
-    if type == 'plant':
-        hsfile = indextbplant.objects.latest('id')
-    else:
-        hsfile = indextbanimal.objects.latest('id')
+    hsfile = DSmodel.objects.latest('id')
     h5f = h5py.File(hsfile.image.path,'r')
     # feats = h5f['dataset_1'][:]
     feats = h5f['dataset_1'][:]
@@ -66,22 +63,15 @@ def imgTest(path,limit=10,max=1,type='plant'):
     # number of top retrieved images to show
     maxres = limit
     # print(rank_score,'test')
-    imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:150])]
+    imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:250])]
     #print("top %d images in order are: " %maxres, imlist)
-
     # show top #maxres retrieved result one by one
     result = []
     for i,im in enumerate(imlist):
-        imlist[i] = str(imlist[i]).replace('b','').replace("'",'')
+        imlist[i] = str(imlist[i])[1:].replace("'",'')
         name = imlist[i]
-        
-        if type=='plant':
-            imlist[i] = f'static/plantdataset/{str(imlist[i])}'
-            result.append({'score':rank_score[i], 'image':imlist[i],'name':name}) 
-        else:
-            imlist[i] = f'static/animaldataset/{str(imlist[i])}'
-            result.append({'score':rank_score[i], 'image':imlist[i],'name':name}) 
-        
+        imlist[i] = f'static/DSfolder/{str(imlist[i])}'
+        result.append({'score':str(rank_score[i]), 'image':imlist[i],'name':name}) 
         # image = mpimg.imread(r"C:\Users\jasee\OneDrive\Desktop\Projects\pro\deep\database"+"/"+str(im, 'utf-8'))
         # plt.title("search output %d" %(i+1))
         # plt.imshow(image)

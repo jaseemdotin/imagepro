@@ -1,0 +1,99 @@
+
+{% extends 'nbase.html' %}
+{% load static %}
+{% block title %}
+<title>CSV Add</title>
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block hero %}
+{% endblock %}
+{% block maincontent %}
+
+ <!-- ======= About Section ======= -->
+ <section id="search" class="services">
+    <div class="container">
+
+      <div class="section-title">
+        <span>Image Search</span>
+        <h2>Image Search</h2>
+        <h6>add description here</h6>
+      </div>
+      <div class="col-12">
+        <!-- lll -->
+
+        <div class="row">
+          <div class="col-sm-12 col-md-1 col-lg-2"></div>
+          <div class="col-sm-12 col-md-9 col-lg-8">
+            
+              <div class="">
+                <form method="POST" id="formnew" enctype="multipart/form-data">
+                  {%csrf_token%}
+                  <div class="col-12">
+                      <div class="row">
+                          <div class="col-sm-12 col-md-3 col-lg-3"></div>
+                          <div class="col-sm-12 col-md-6 col-lg-6 border p-4">
+                              <div class="form-group p-2">
+                                  <label for="" class="font-weight-bold"><b>File</b> </label>
+                                  <input type="file" name="image" id="id_image" accept="image/png, image/jpeg" class="form-control" required>
+                              </div>
+                              <div class="form-group p-2">
+                                <label for="" class="font-weight-bold"><b>Output limit</b></label>
+                                <input type="number" name="limit" id="limit" class="form-control">
+                            </div>
+                            <div class="form-group p-2">
+                                <label for="" class="font-weight-bold"><b>Min Score</b></label>
+                                <input type="number" step="0.01" name="max" id="max" class="form-control">
+                            </div>
+                            <div class="form-group p-2 text-center">
+                                <!-- <button class="btn btn-primary"type="submit"  id="ldrr">Search</button> -->
+                                <button type="submit" class="btn btn-primary" id="formUploadButton" >Search</button>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-12 col-lg-6" style="display: none;">
+                              <div class="form-group p-2">
+                                  <label for="" class="font-weight-bold"><b>Image Path</b> </label>
+                                  <input type="text" name="path" id="path" class="form-control"   required>
+                              </div>
+                              
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-12">
+                      <div class="row">
+                          <div class="col-sm-6">
+                            
+                          </div>
+                            <div class="col-sm-6">
+                                
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-12" >
+                      <div class="row">
+                          <div class="col-2"></div>
+                          <div class="col-sm-12 col-md-12 col-lg-4 m-1" style="display: none;">
+                              <button class="col-12 btn btn-danger" id="freset" type="button" disabled>Reset</button>
+                          </div>
+                          <div class="col-sm-12 col-md-12 col-lg-4 m-1">
+                             <div class="form-group">
+                              <!-- <button class="btn btn-primary"type="submit"  id="ldrr">
+                                Search
+                              </button> -->
+                              <!-- <input type="submit" value="Search" class="col-12 btn btn-primary" id="ldrr"> -->
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+              </div>
+            </div>
+        <!-- 2222 -->
+      </div>
+
+    </div>
+  </section
+
+
+{% endblock %}

@@ -4,9 +4,6 @@
 <title>Image Add</title>
 {% endblock %}
 {% block header %}
-<li><a class="nav-link scrollto " href="{% url 'csvadd' %}">MODEL</a></li>
-<li><a class="nav-link scrollto " href="{% url 'imageadd' %}">DATABASE</a></li>
-<li><a class="nav-link scrollto " href="{% url 'userlist' %}">USERS</a></li>
 {% endblock %}
 {% block hero %}
 {% endblock %}
@@ -54,20 +51,28 @@
                                       {% csrf_token %}
                                       <div class="col-sm-12 col-lg-12 col-md-12">
                                           <div class="row">
-                                              <div class="col-sm-12 col-md-12 col-lg-12">
+                                              <!-- <div class="col-sm-12 col-md-12 col-lg-12">
                                                   <div class="form-group p-2">
                                                       <label for="" class="">Image Type</label>
                                                         <select name="name" id="" class="form-select">
-                                                            <option value="plant">Plants</option>
-                                                            <option value="animals">Animals</option>
+                                                            <option value="airbus">Airbus</option>
+                                                            <option value="bomberdier">Bomberdier</option>
                                                         </select>
                                                   </div>
                                                   
-                                              </div>
+                                              </div> -->
                                               <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group p-2">
+                                                    <label for="">Select Type</label>
+                                                    <select name="" id="uptype" class="form-select">
+                                                        <option value="1">File</option>
+                                                        <option value="2">Folder</option>
+                                                    </select>
+                                                </div>
                                                   <div class="form-group p-2">
                                                       <label for="" class="">File</label>
-                                                      <input type="file" name="file" id="filed" class="form-control" accept="image/jpeg,.tif" multiple required>
+                                                      <!-- <input type="file" name="file" id="filed" class="form-control" accept="image/jpeg,image/png" multiple required> -->
+                                                      <input type="file" name="file" id="filed" class="form-control" accept="image/jpeg,,image/png" multiple required>
                                                   </div>
                                               </div>
                                               <div class="col-sm-12 col-md-12 col-lg-12">

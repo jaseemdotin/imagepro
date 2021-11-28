@@ -20,8 +20,7 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.homeView,name="home"),
-    path('search2',views.resultView),
-    path('srch',views.searchView,name="search"),
+    path('srch',views.samplesearch,name="search"),
     path('csvadd',views.csvAddView,name="csvadd"),
     path('imageadd',views.imageAddView,name="imageadd"),
     path('login',views.adminlogin,name="login"),
@@ -30,4 +29,7 @@ urlpatterns = [
     path('userlist',views.userlistview,name='userlist'),
     path('userlist/act/<int:id>',views.activateUserView,name='useractivate'),
     path('userlist/deact/<int:id>',views.deactivateUserView,name='userdeactivate'),
+    path('imsample',views.samplesearch,name='sm'),
+    path('userlist/edit/<int:id>',views.editUserView,name='edituser'),
+    path('userlist/super/<int:id>',views.superUserView,name='superuser'),
 ]

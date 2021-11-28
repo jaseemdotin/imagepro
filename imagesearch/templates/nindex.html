@@ -4,21 +4,7 @@
 <title>Home</title>
 {% endblock %}
 {% block header %}
-<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-<li><a class="nav-link scrollto" href="#about">About</a></li>
-<li><a class="nav-link scrollto" href="{% url 'search' %}">Image Search</a></li>
-{% if user.is_staff or user.is_superuser %}
-<li class="dropdown"><a href="#hero"><span>Settings</span> <i class="bi bi-chevron-right"></i></a>
-  <ul>
-    <li><a href="{% url 'csvadd' %}">MODEL</a></li>
-    <li><a href="{% url 'imageadd' %}">DATABASE</a></li>
-    {% if user.is_superuser %}
-      <li><a href="{% url 'userlist' %}">USERS</a></li>
-      {% endif %}
-  </ul>
-</li>
-{% endif %}
-<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+
 {% endblock %}
 {% block maincontent %}
        <!-- ======= Search Section ======= -->
