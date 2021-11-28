@@ -46,7 +46,6 @@
                                     
                                     {% endif %}
                                     {% if not i.is_superuser %}
-                                    <a href="{% url 'userdeactivate' i.id %}" class="btn btn-danger btn-sm"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><li class="fa fa-trash"></li></a>
                                     <a href="{% url 'superuser' i.id %}" class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="right" title="Make As Superuser">
                                         <li class="fa fa-edit" ></li>
                                     </a>
@@ -54,6 +53,8 @@
                                     <a href="{% url 'edituser' i.id %}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="right" title="Edit Profile">
                                         <li class="fa fa-edit" ></li>
                                     </a>
+                                    <a href="{% url 'userdeactivate' i.id %}" class="btn btn-danger btn-sm"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><li class="fa fa-trash"></li></a>
+                                    
                                     {% endif %}
                                 </td>
                             </tr>
